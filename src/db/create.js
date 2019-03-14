@@ -6,12 +6,12 @@ const config = require(path.resolve(process.cwd(), 'config'))
 
 const CreateSequelize = () => {
     if(!config) {
-      return console.log('请创建配置文件， 配置相应的dbName,dbUser, dbPassWord!')
+      return console.log('请创建配置文件， 配置相应的dbName, tablesName, dbUser, dbPassWord!')
     }
     console.log('connect databases...');
-    return new Sequelize(config.dbName, config.dbUser, config.dbPassWord, {
+    return new Sequelize(config.tablesName, config.dbUser, config.dbPassWord, {
       host: 'localhost',
-      dialect: 'mysql',
+      dialect: config.dbName,
       operatorsAliases: false,
       pool: {
         max: 5,
