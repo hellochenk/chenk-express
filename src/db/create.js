@@ -1,10 +1,15 @@
 //todo create databases;
-
+const path = require('path');
 const Sequelize = require('sequelize');
+const config = require(path.resolve(process.cwd(), 'config'))
+// console.log('user config', config)
 
 const CreateSequelize = () => {
-    console.log('create databases...');
-    return new Sequelize('mytestdb', 'root', '123456', {
+    if(!config) {
+      return console.log('请创建配置文件， 配置相应的dbName,dbUser, dbPassWord!')
+    }
+    console.log('connect databases...');
+    return new Sequelize(config.dbName, config.dbUser, config.dbPassWord, {
       host: 'localhost',
       dialect: 'mysql',
       operatorsAliases: false,

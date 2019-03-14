@@ -7,6 +7,7 @@ const models = {}
 const initDb = async () => {
     const modelsPath = './models';
     const sequelizeInstance = createDb();
+    console.log('connect databases success!')
     const files = await fs.readdirSync(path.resolve(__dirname, modelsPath));
     files.map(item => {
         // console.log(item)
