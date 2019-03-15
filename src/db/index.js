@@ -7,7 +7,8 @@ const models = {}
 const initDb = async () => {
     const modelsPath = './models';
     const sequelizeInstance = createDb();
-    console.log('connect databases success!')
+    console.log('connect databases success!');
+
     const files = await fs.readdirSync(path.resolve(__dirname, modelsPath));
     files.map(item => {
         // console.log(item)
@@ -16,6 +17,11 @@ const initDb = async () => {
         let model = sequelizeInstance.import(path.join(__dirname,`${modelsPath}/${item}`));
         models[model.name] = model;
     })
+
+    if(process.env.NODE_ENV === 'development') {
+        console.log('当前开发模式，同步数据库表格!')
+        await sequelizeInstance.sync();
+    }
 
     models.sequelizeInstance = sequelizeInstance;
 

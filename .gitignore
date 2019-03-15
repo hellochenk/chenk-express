@@ -1,5 +1,5 @@
 node_modules
 node_modules.zip
 dist
-config.js
+config.json
 package-lock.json
