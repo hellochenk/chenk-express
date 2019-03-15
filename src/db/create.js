@@ -20,8 +20,14 @@ const CreateSequelize = () => {
         idle: 10000
       },
       define: {
+        'underscored': true,
+        'charset':'utf8mb4',
         timestamps: true // 默认为 true
       }
+    //   'define': {
+    //     'underscored': true,
+    //     'charset':'utf8mb4'
+    // }
       // 仅限 SQLite
     //   storage: 'path/to/database.sqlite'
     });
