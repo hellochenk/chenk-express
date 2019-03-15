@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const wikiController = require('../../controllers/wiki.controller')
+const wikiController = require('../../controllers/wiki.controller');
 
 // 主页路由
 router.get('/', wikiController.index);

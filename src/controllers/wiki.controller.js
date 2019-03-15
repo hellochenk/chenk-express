@@ -5,11 +5,11 @@ const index = async (req, res) => {
 	let result = await db.models.users.findOne({
 		where: {title: 'chenk'}
 	})
-	res.send(`维基主页${JSON.stringify(result)}`);
+	res.send(`test home ${JSON.stringify(result)}`);
 }
 
 const about = async (req, res) => {
-	res.send(`about 维基主页`);
+	res.send(`about test home`);
 }
 
 module.exports = {
