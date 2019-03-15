@@ -20,7 +20,7 @@ const initDb = async () => {
 
     if(process.env.NODE_ENV === 'development') {
         console.log('当前开发模式，同步数据库表格!')
-        await sequelizeInstance.sync();
+        await sequelizeInstance.sync(); 
     }
 
     models.sequelizeInstance = sequelizeInstance;
