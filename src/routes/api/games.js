@@ -5,9 +5,10 @@ const gameController = require('../../controllers/games.controller')
 
 /* GET users listing. */
 router.get('/getGame', gameController.fetchGame);
-router.get('/createGame', gameController.createGame);
+router.post('/createGame', gameController.createGame);
 router.get('/updateGame', gameController.updateGame);
 router.get('/deleteGame', gameController.deleteGame);
+router.post('/testGame', gameController.testGame);
 
 
 

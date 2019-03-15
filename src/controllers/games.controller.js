@@ -2,12 +2,21 @@ const db = require('../db/index')
 
 // controller ...
 const createGame = async (req, res) => {
-    console.log('create some one');
-    res.send(`createGame games`);
-	// let result = await db.models.users.findOne({
-	// 	where: {title: 'chenk'}
-	// })
-	// res.send(`test home ${JSON.stringify(result)}`);
+    // console.log('body', req.body)
+    const { game, user, connect, price, mark, date } = req.body;
+    let result = await db.models.games.create({
+        Game: game, 
+        User: user, 
+        Connect: connect, 
+        Price: price, 
+        Mark: mark, 
+        Date: date
+    })
+    if(result) {
+        res.send({type: 'success'});
+    } else {
+        res.send({type: 'fail'});
+    }
 }
 
 const deleteGame = async (req, res) => {
@@ -21,8 +30,19 @@ const updateGame = async (req, res) => {
 }
 
 const fetchGame = async (req, res) => {
-    console.log('search some games');
-    res.send(`test games`);
+    let result = await db.models.games.findAll({
+        attributes: ['Game', 'User', 'Connect', 'Price', 'Mark', 'Date'],
+    });
+    if(result) {
+        res.send({type: 'success', result});
+    } else {
+        res.send({type: 'fail', result});
+    }
+}
+
+const testGame = async (req, res) => {
+    console.log('testGame some games');
+    res.send(`testGame games`);
 }
 
 
@@ -30,5 +50,6 @@ module.exports = {
     createGame,
     deleteGame,
     updateGame,
-    fetchGame
+    fetchGame,
+    testGame
 }
