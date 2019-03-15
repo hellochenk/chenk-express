@@ -1,5 +1,5 @@
 const createDb = require('./create');
-const Sequelize = require('Sequelize');
+// const Sequelize = require('Sequelize');
 const path = require('path');
 const fs = require('fs');
 const models = {}
