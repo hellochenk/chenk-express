@@ -10,7 +10,8 @@ const createGame = async (req, res) => {
         Connect: connect, 
         Price: price, 
         Mark: mark, 
-        Date: date
+        Date: date,
+        Valid: '1'
     })
     if(result) {
         res.send({type: 'success'});
@@ -20,8 +21,21 @@ const createGame = async (req, res) => {
 }
 
 const deleteGame = async (req, res) => {
-    console.log('delete some one');
-    res.send(`deleteGame games`);
+    // const { game, user, connect, price, mark, date } = req.body;
+    // let result = await db.models.games.create({
+    //     Game: game, 
+    //     User: user, 
+    //     Connect: connect, 
+    //     Price: price, 
+    //     Mark: mark, 
+    //     Date: date,
+    //     Valid: '1'
+    // })
+    // if(result) {
+        // res.send({type: 'success'});
+    // } else {
+    //     res.send({type: 'fail'});
+    // }
 }
 
 const updateGame = async (req, res) => {
@@ -31,6 +45,7 @@ const updateGame = async (req, res) => {
 
 const fetchGame = async (req, res) => {
     let result = await db.models.games.findAll({
+        // where: {valid: '1'},
         attributes: ['Game', 'User', 'Connect', 'Price', 'Mark', 'Date'],
     });
     if(result) {

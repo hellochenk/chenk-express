@@ -6,6 +6,7 @@ const Users = (sequelize, DataTypes) => {
         Price: DataTypes.STRING,
         Mark: DataTypes.STRING,
         Date: DataTypes.STRING,
+        Valid: DataTypes.STRING,
     })
 }
 // game, user, connect, price, mark, date
