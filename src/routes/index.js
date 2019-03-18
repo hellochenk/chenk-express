@@ -3,6 +3,7 @@ const fs = require('fs')
 
 const wiki = require('./api/wiki');
 const games = require('./api/games');
+const weixin = require('./api/weixin')
 
 const initRouter = async app => {
 	console.log('start create router')
@@ -18,6 +19,7 @@ const initRouter = async app => {
 		// app.use('/users', usersRouter);
 		app.use('/wiki', wiki);
 		app.use('/api', games);
+		app.use('/wx', weixin);
 
 
 		// console.log('init router end')
