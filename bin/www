@@ -10,14 +10,12 @@ startApp().then(app => {
   let debug = require('debug')('helloworld:server');
   // let http = require('http');
 
-  let privateKey  = fs.readFileSync(path.resolve(process.cwd(),'asset/private.pem'), 'utf8');
-  let certificate = fs.readFileSync(path.resolve(process.cwd(),'asset/file.crt'), 'utf8');
-  let credentials = {key: privateKey, cert: certificate};
+  // let privateKey  = fs.readFileSync(path.resolve(process.cwd(),'asset/private.pem'), 'utf8');
+  // let certificate = fs.readFileSync(path.resolve(process.cwd(),'asset/file.crt'), 'utf8');
+  // let credentials = {key: privateKey, cert: certificate};
 
-  console.log('ssl', privateKey, certificate)
-
-  // let http = require('http');
-  let https = require('https');
+  let http = require('http');
+  // let https = require('https');
 
   /**
    * Get port from environment and store in Express.
@@ -31,9 +29,9 @@ startApp().then(app => {
    * Create HTTP server.
    */
 
-  // let server = http.createServer(app);
+  let server = http.createServer(app);
 
-  let server = https.createServer(credentials, app);
+  // let server = https.createServer(credentials, app);
 
   /**
    * Listen on provided port, on all network interfaces.
