@@ -19,7 +19,7 @@ const initRouter = async app => {
 		// app.use('/users', usersRouter);
 		app.use('/wiki', wiki);
 		app.use('/api', games);
-		app.use('/wx', weixin);
+		app.use('/api', weixin);
 
 
 		// console.log('init router end')

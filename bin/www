@@ -1,27 +1,39 @@
 #!/usr/bin/env node
 
-const path = require('path')
+const path = require('path');
+const fs = require('fs');
 /**
  * Module dependencies.
  */
-var startApp = require(path.resolve(__dirname, '../src/app')); // 引入启动函数
+let startApp = require(path.resolve(__dirname, '../src/app')); // 引入启动函数
 startApp().then(app => {
-  var debug = require('debug')('helloworld:server');
-  var http = require('http');
+  let debug = require('debug')('helloworld:server');
+  // let http = require('http');
+
+  let privateKey  = fs.readFileSync(path.resolve(process.cwd(),'asset/private.pem'), 'utf8');
+  let certificate = fs.readFileSync(path.resolve(process.cwd(),'asset/file.crt'), 'utf8');
+  let credentials = {key: privateKey, cert: certificate};
+
+  console.log('ssl', privateKey, certificate)
+
+  // let http = require('http');
+  let https = require('https');
 
   /**
    * Get port from environment and store in Express.
    */
   const config = require(path.resolve(process.cwd(), 'config'));
   // console.log('config', config)
-  var port = normalizePort(process.env.PORT || config.port);
+  let port = normalizePort(process.env.PORT || config.port);
   app.set('port', port);
 
   /**
    * Create HTTP server.
    */
 
-  var server = http.createServer(app);
+  // let server = http.createServer(app);
+
+  let server = https.createServer(credentials, app);
 
   /**
    * Listen on provided port, on all network interfaces.
@@ -40,7 +52,7 @@ startApp().then(app => {
    */
 
   function normalizePort(val) {
-    var port = parseInt(val, 10);
+    let port = parseInt(val, 10);
 
     if (isNaN(port)) {
       // named pipe
@@ -64,7 +76,7 @@ startApp().then(app => {
       throw error;
     }
 
-    var bind = typeof port === 'string' ?
+    let bind = typeof port === 'string' ?
       'Pipe ' + port :
       'Port ' + port;
 
@@ -88,8 +100,8 @@ startApp().then(app => {
    */
 
   function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === 'string' ?
+    let addr = server.address();
+    let bind = typeof addr === 'string' ?
       'pipe ' + addr :
       'port ' + addr.port;
     debug('Listening on ' + bind);

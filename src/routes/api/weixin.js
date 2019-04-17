@@ -4,7 +4,7 @@ var router = express.Router();
 
 
 /* GET users listing. */
-router.get('/test', (req, res) => {
+router.get('/wx/test', (req, res) => {
     console.log('req.body', req.body);
 
     res.send('test request')
